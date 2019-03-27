@@ -1,5 +1,5 @@
 # Party Gopher
-Party Gopher! Inspired by [Party Parrot](https://github.com/jmhobbs/party-gopher)
+Party Gopher! Inspired by [Party Gopher](https://github.com/jmhobbs/party-gopher)
 
 # Installing
 ```
