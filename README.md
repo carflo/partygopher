@@ -11,7 +11,7 @@ gopher
 ```
 OR 
 ```bash
-# loops through the animation 5 times. 
+# Parties for 5 seconds 
 gopher -loops 5 
 ```
 

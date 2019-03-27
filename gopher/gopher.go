@@ -35,15 +35,20 @@ var (
 )
 
 func main() {
-	loops := flag.Int("loops", 1, "Number of times to loop the animation")
+	loops := flag.Int("loops", 5, "Amount of seconds to party.")
 	flag.Parse()
 
 	screen = initializeScreen()
 	frames := initializeData()
-	for i := 0; i < *loops; i++ {
-		for j := 0; j < frameCount; j++ {
-			draw(frames[j], colors[j%len(colors)])
-			time.Sleep(delay * time.Millisecond)
+	currentFrame := 0
+	for quit, timeout := false, time.After(time.Duration(*loops)*time.Second); quit != true; {
+		draw(frames[currentFrame%len(frames)], colors[currentFrame%len(colors)])
+		time.Sleep(delay * time.Millisecond)
+		currentFrame++
+		select {
+		case <-timeout:
+			quit = true
+		default:
 		}
 	}
 
