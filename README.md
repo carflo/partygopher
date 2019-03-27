@@ -3,8 +3,7 @@ Party Gopher! Inspired by [Party Parrot](https://github.com/jmhobbs/party-gopher
 
 # Installing
 ```
-go get github.com/carflo/partygopher
-make
+go get github.com/carflo/partygopher/gopher
 ```
 # Usage
 ```bash
