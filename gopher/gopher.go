@@ -41,6 +41,9 @@ func main() {
 	screen = initializeScreen()
 	frames := initializeData()
 	currentFrame := 0
+
+	esc := initializeEscListener()
+
 	for quit, timeout := false, time.After(time.Duration(*loops)*time.Second); quit != true; {
 		draw(frames[currentFrame%len(frames)], colors[currentFrame%len(colors)])
 		time.Sleep(delay * time.Millisecond)
@@ -48,11 +51,31 @@ func main() {
 		select {
 		case <-timeout:
 			quit = true
+		case <-esc:
+			quit = true
 		default:
 		}
 	}
 
 	screen.Fini()
+}
+
+func initializeEscListener() chan struct{} {
+	esc := make(chan struct{})
+	go func() {
+		for {
+			event := screen.PollEvent()
+			switch event := event.(type) {
+			case *tcell.EventKey:
+				switch event.Key() {
+				case tcell.KeyEscape, tcell.KeyCtrlC:
+					close(esc)
+				}
+			}
+		}
+	}()
+
+	return esc
 }
 
 func initializeScreen() tcell.Screen {
