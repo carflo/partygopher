@@ -50,7 +50,9 @@ func main() {
 		currentFrame++
 		select {
 		case <-timeout:
-			quit = true
+			if *loops != 0 {
+				quit = true
+			}
 		case <-esc:
 			quit = true
 		default:

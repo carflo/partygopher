@@ -9,10 +9,13 @@ go get github.com/carflo/partygopher/gopher
 ```bash
 gopher
 ```
-OR 
+OR
 ```bash
-# Parties for 5 seconds 
-gopher -loops 5 
+# Parties for 5 seconds
+gopher -loops 5
+
+# Parties for eternity...
+gopher -loops 0
 ```
 
 # Artwork
